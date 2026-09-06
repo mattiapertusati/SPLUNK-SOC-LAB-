@@ -1,20 +1,22 @@
-![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-F66151?style=flat)
-![Splunk](https://img.shields.io/badge/Splunk-Enterprise_SIEM-000000?style=flat&logo=splunk&logoColor=white)
+![MITRE ATT\&CK](https://img.shields.io/badge/MITRE-ATT%26CK-F66151?style=flat)
+![Splunk](https://img.shields.io/badge/Splunk-Enterprise_SIEM-000000?style=flat\&logo=splunk\&logoColor=white)
 ![Sigma](https://img.shields.io/badge/Sigma-Generic_Rules-00B2A9?style=flat)
-![KQL](https://img.shields.io/badge/KQL-Microsoft_Sentinel-0078D4?style=flat&logo=microsoft&logoColor=white)
+![KQL](https://img.shields.io/badge/KQL-Microsoft_Sentinel-0078D4?style=flat\&logo=microsoft\&logoColor=white)
 ![DetectionLab](https://img.shields.io/badge/DetectionLab-Enterprise_Environment-333333?style=flat)
 
 # 🛡️ Advanced Detection Engineering & Threat Hunting Portfolio
 
-Benvenuto nel mio portfolio aziendale di Detection Engineering. Questo repository dimostra un ciclo di vita completo di una detection: dalla simulazione dell'attacco (Red Teaming) alla raccolta della telemetria, fino alla scrittura e validazione della regola di rilevamento in configurazioni multi-vendor (Splunk SPL, Microsoft Sentinel KQL, e Sigma).
+Welcome to my corporate Detection Engineering portfolio. This repository demonstrates a complete detection lifecycle: from attack simulation (Red Teaming) to telemetry collection, through to the writing and validation of the detection rule in multi-vendor configurations (Splunk SPL, Microsoft Sentinel KQL, and Sigma).
 
-L'intero progetto è stato sviluppato all'interno di un ambiente controllato (**DetectionLab**) enterprise-grade composto da un Domain Controller, macchine client Windows 10 monitorate via Sysmon e Windows Event Forwarding (WEF), e un'istanza centrale Splunk (Logger).
+The entire project was developed within a controlled (**DetectionLab**) enterprise-grade environment consisting of a Domain Controller, Windows 10 client machines monitored via Sysmon and Windows Event Forwarding (WEF), and a central Splunk instance (Logger).
 
 ---
 
 ## 🎯 Project Metrics (At a Glance)
 
+* **High-fidelity detection coverage validated across 180,000 generated events**
 * **22** SPL Detections Totali (Splunk)
+
   * *17 Regole di base atomiche*
   * *5 Regole di correlazione (Kill Chain)*
 * **17** KQL Detections (Microsoft Sentinel)
@@ -30,25 +32,26 @@ L'intero progetto è stato sviluppato all'interno di un ambiente controllato (**
 
 *Nota: Le 17 regole di base sono state mappate in base all'intento operativo e alla tattica primaria effettiva sfruttata nell'ambiente.*
 
-| MITRE ID | Tattica (Tactic) | Regole Sviluppate (Primary) | Stato Copertura |
-| :--- | :--- | :---: | :---: |
-| **TA0001** | Initial Access | 0 | ⚪ |
-| **TA0002** | Execution | 1 | 🟡 |
-| **TA0003** | Persistence | 2 | 🟢 |
-| **TA0004** | Privilege Escalation | 3 | 🟢 |
-| **TA0005** | Defense Evasion | 4 | 🟢 |
-| **TA0006** | Credential Access | 2 | 🟢 |
-| **TA0007** | Discovery | 1 | 🟡 |
-| **TA0008** | Lateral Movement | 3 | 🟢 |
-| **TA0009** | Collection | 0 | ⚪ |
-| **TA0010** | Exfiltration | 0 | ⚪ |
-| **TA0040** | Impact | 1 | 🟡 |
+| MITRE ID   | Tattica (Tactic)     | Regole Sviluppate (Primary) | Stato Copertura |
+| :--------- | :------------------- | :-------------------------: | :-------------: |
+| **TA0001** | Initial Access       |              0              |        ⚪        |
+| **TA0002** | Execution            |              1              |        🟡       |
+| **TA0003** | Persistence          |              2              |        🟢       |
+| **TA0004** | Privilege Escalation |              3              |        🟢       |
+| **TA0005** | Defense Evasion      |              4              |        🟢       |
+| **TA0006** | Credential Access    |              2              |        🟢       |
+| **TA0007** | Discovery            |              1              |        🟡       |
+| **TA0008** | Lateral Movement     |              3              |        🟢       |
+| **TA0009** | Collection           |              0              |        ⚪        |
+| **TA0010** | Exfiltration         |              0              |        ⚪        |
+| **TA0040** | Impact               |              1              |        🟡       |
 
 ---
 
 ## 📊 Performance Metrics & Validation
 
 ### 📈 Metodologia di Testing (Lab Verification)
+
 Invece di affidarmi a metriche teoriche, ogni regola presente in questo repository è stata testata empiricamente in un ambiente isolato:
 
 * **True Positives (TP):** Generati simulando attacchi reali tramite script custom e moduli di **Atomic Red Team**. Tutte le 17 regole atomiche hanno triggerato con successo i relativi alert.
@@ -56,33 +59,35 @@ Invece di affidarmi a metriche teoriche, ogni regola presente in questo reposito
 
 ### 📋 Detection Validation Matrix
 
-| File | Nome Tecnica / Scenario | SPL | KQL | Sigma |
-| :--- | :--- | :---: | :---: | :---: |
-| **01** | Encoded PowerShell Command (T1059.001) | ✅ | ✅ | ✅ |
-| **02** | Local User Creation (T1136.001) | ✅ | ✅ | ✅ |
-| **03** | Local Privilege Escalation (UAC) (T1548.002) | ✅ | ✅ | ✅ |
-| **04** | Windows Defender Evasion (T1562.001) | ✅ | ✅ | ✅ |
-| **05** | Scheduled Task Persistence (T1053.005) | ✅ | ✅ | ✅ |
-| **06** | OS Credential Dumping: LSASS (T1003.001) | ✅ | ✅ | ✅ |
-| **07** | Lateral Movement via PsExec (T1569.002) | ✅ | ✅ | ✅ |
-| **08** | Firewall Manipulation (Netsh) (T1562.004) | ✅ | ✅ | ✅ |
-| **09** | Clearing Event Logs (wevtutil) (T1070.001) | ✅ | ✅ | ✅ |
-| **10** | RDP Session Hijacking (tscon) (T1563.002) | ✅ | ✅ | ✅ |
-| **11** | Domain Compromise Correlation | ✅ | ⚪ | ⚪ |
-| **12** | Credential Theft Correlation | ✅ | ⚪ | ⚪ |
-| **13** | Lateral Persistence Correlation | ✅ | ⚪ | ⚪ |
-| **14** | Ransomware & Exfiltration Correlation | ✅ | ⚪ | ⚪ |
-| **15** | Phishing & Initial Access Correlation | ✅ | ⚪ | ⚪ |
-| **16** | Local & Domain Reconnaissance (TA0007) | ✅ | ✅ | ✅ |
-| **17** | Kerberoasting (RC4 TGS Request) (T1558.003) | ✅ | ✅ | ✅ |
-| **18** | Linux SUID Discovery & PrivEsc (T1548.001) | ✅ | ✅ | ✅ |
-| **19** | WMI Lateral Movement & Execution (T1047) | ✅ | ✅ | ✅ |
-| **20** | Token Impersonation (Special Logon) (T1134.001) | ✅ | ✅ | ✅ |
-| **21** | Inhibit System Recovery (VSS Deletion) (T1490) | ✅ | ✅ | ✅ |
-| **22** | Rundll32 Proxy Execution (Droppers) (T1218.011) | ✅ | ✅ | ✅ |
+| File   | Nome Tecnica / Scenario                         | SPL | KQL | Sigma |
+| :----- | :---------------------------------------------- | :-: | :-: | :---: |
+| **01** | Encoded PowerShell Command (T1059.001)          |  ✅  |  ✅  |   ✅   |
+| **02** | Local User Creation (T1136.001)                 |  ✅  |  ✅  |   ✅   |
+| **03** | Local Privilege Escalation (UAC) (T1548.002)    |  ✅  |  ✅  |   ✅   |
+| **04** | Windows Defender Evasion (T1562.001)            |  ✅  |  ✅  |   ✅   |
+| **05** | Scheduled Task Persistence (T1053.005)          |  ✅  |  ✅  |   ✅   |
+| **06** | OS Credential Dumping: LSASS (T1003.001)        |  ✅  |  ✅  |   ✅   |
+| **07** | Lateral Movement via PsExec (T1569.002)         |  ✅  |  ✅  |   ✅   |
+| **08** | Firewall Manipulation (Netsh) (T1562.004)       |  ✅  |  ✅  |   ✅   |
+| **09** | Clearing Event Logs (wevtutil) (T1070.001)      |  ✅  |  ✅  |   ✅   |
+| **10** | RDP Session Hijacking (tscon) (T1563.002)       |  ✅  |  ✅  |   ✅   |
+| **11** | Domain Compromise Correlation                   |  ✅  |  ⚪  |   ⚪   |
+| **12** | Credential Theft Correlation                    |  ✅  |  ⚪  |   ⚪   |
+| **13** | Lateral Persistence Correlation                 |  ✅  |  ⚪  |   ⚪   |
+| **14** | Ransomware & Exfiltration Correlation           |  ✅  |  ⚪  |   ⚪   |
+| **15** | Phishing & Initial Access Correlation           |  ✅  |  ⚪  |   ⚪   |
+| **16** | Local & Domain Reconnaissance (TA0007)          |  ✅  |  ✅  |   ✅   |
+| **17** | Kerberoasting (RC4 TGS Request) (T1558.003)     |  ✅  |  ✅  |   ✅   |
+| **18** | Linux SUID Discovery & PrivEsc (T1548.001)      |  ✅  |  ✅  |   ✅   |
+| **19** | WMI Lateral Movement & Execution (T1047)        |  ✅  |  ✅  |   ✅   |
+| **20** | Token Impersonation (Special Logon) (T1134.001) |  ✅  |  ✅  |   ✅   |
+| **21** | Inhibit System Recovery (VSS Deletion) (T1490)  |  ✅  |  ✅  |   ✅   |
+| **22** | Rundll32 Proxy Execution (Droppers) (T1218.011) |  ✅  |  ✅  |   ✅   |
 
 ### 🔗 Advanced Correlation Rules
+
 Oltre alle detection di base, sono state sviluppate 5 regole di correlazione avanzata in SPL per tracciare attacchi complessi (Kill Chain):
+
 * `11` - Domain Compromise Correlation
 * `12` - Credential Theft Correlation
 * `13` - Lateral Persistence Correlation
@@ -97,19 +102,20 @@ Ogni singola regola presente in questo repository è stata sviluppata e testata 
 
 ```mermaid
 graph LR
-    A[🔴 1. Attack] -->|Atomic Red Team| B[📡 2. Telemetry]
-    B -->|Sysmon / Event Logs| C[🛠️ 3. Detection]
-    C -->|SPL / KQL / Sigma| D[🚨 4. Alert]
-    D -->|SIEM Dashboard| E[🛡️ 5. Triage]
-    E -->|Playbooks / CyberChef| F[✅ 6. Validation]
-    
-    style A fill:#3b1c1c,stroke:#d41f1f,stroke-width:2px,color:#fff
-    style B fill:#1c2b3b,stroke:#0877a6,stroke-width:2px,color:#fff
-    style C fill:#3b321c,stroke:#f8be34,stroke-width:2px,color:#fff
-    style D fill:#3b231c,stroke:#f1813f,stroke-width:2px,color:#fff
-    style E fill:#1c3b24,stroke:#53a051,stroke-width:2px,color:#fff
-    style F fill:#1c3b3b,stroke:#00a6a6,stroke-width:2px,color:#fff
+    A[🔴 1. Attack] -->|Atomic Red Team| B[📡 2. Telemetry]
+    B -->|Sysmon / Event Logs| C[🛠️ 3. Detection]
+    C -->|SPL / KQL / Sigma| D[🚨 4. Alert]
+    D -->|SIEM Dashboard| E[🛡️ 5. Triage]
+    E -->|Playbooks / CyberChef| F[✅ 6. Validation]
+    
+    style A fill:#3b1c1c,stroke:#d41f1f,stroke-width:2px,color:#fff
+    style B fill:#1c2b3b,stroke:#0877a6,stroke-width:2px,color:#fff
+    style C fill:#3b321c,stroke:#f8be34,stroke-width:2px,color:#fff
+    style D fill:#3b231c,stroke:#f1813f,stroke-width:2px,color:#fff
+    style E fill:#1c3b24,stroke:#53a051,stroke-width:2px,color:#fff
+    style F fill:#1c3b3b,stroke:#00a6a6,stroke-width:2px,color:#fff
 ```
+
 1. **Attack:** Simulazione controllata dell'avversario tramite script o esecuzione manuale di tecniche MITRE.
 2. **Telemetry:** Verifica che l'infrastruttura (WEF/Sysmon) abbia effettivamente generato e inoltrato i log (EventID).
 3. **Detection:** Scrittura e ottimizzazione della query per isolare il comportamento malevolo minimizzando i falsi positivi.
@@ -123,11 +129,11 @@ graph LR
 
 Il flusso dei dati segue un'architettura rigorosa e centralizzata per garantire che nessuna telemetria venga persa durante le fasi di attacco:
 
-$$\text{Atomic Red Team / Attaccante} \longrightarrow \text{Windows Endpoint (Sysmon/Security Log)} \longrightarrow \text{Windows Event Forwarder (WEF)} \longrightarrow \text{Splunk Forwarder} \longrightarrow \text{Splunk Enterprise (SIEM)}$$
+\(\text{Atomic Red Team / Attaccante} \longrightarrow \text{Windows Endpoint (Sysmon/Security Log)} \longrightarrow \text{Windows Event Forwarder (WEF)} \longrightarrow \text{Splunk Forwarder} \longrightarrow \text{Splunk Enterprise (SIEM)}\)
 
-1.  **Attack Generation:** I test vengono eseguiti programmaticamente tramite `Invoke-AtomicTest` o comandi OS consolidati.
-2.  **Telemetry Collection:** Viene abilitato l'auditing avanzato di Windows (Process Creation 4688 con CommandLine abilitata) accoppiato a una configurazione Sysmon ottimizzata (basata su SwiftOnSecurity).
-3.  **Log Forwarding:** I log vengono centralizzati via WEF e indicizzati in Splunk sotto l'index `wineventlog` e `sysmon`.
+1. **Attack Generation:** I test vengono eseguiti programmaticamente tramite `Invoke-AtomicTest` o comandi OS consolidati.
+2. **Telemetry Collection:** Viene abilitato l'auditing avanzato di Windows (Process Creation 4688 con CommandLine abilitata) accoppiato a una configurazione Sysmon ottimizzata (basata su SwiftOnSecurity).
+3. **Log Forwarding:** I log vengono centralizzati via WEF e indicizzati in Splunk sotto l'index `wineventlog` e `sysmon`.
 
 ---
 
